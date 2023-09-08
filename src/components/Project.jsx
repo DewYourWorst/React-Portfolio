@@ -1,6 +1,15 @@
 import Shazingle from "../assets/shazingle.png"
+import {useState} from "react"
 
 export default function Projects(){
+    let [isShown, setIsShown] = useState(false)
+
+    let handleClick = event => {
+        setIsShown(true)
+        if(isShown == true){
+            setIsShown(false)
+        }
+    };
     const assignments = [
         {id: 1,
         name:"Shazingle",
@@ -28,19 +37,22 @@ export default function Projects(){
 
     return(
         <>
-            <h1>These are my Projects:</h1>
-            { assignments.map( project => 
-                <div>
-                    <p>This is my project, { project.name }</p>
-                    <a href= { project.live }>
-                        <img src= {project.image} width="675" height="400"/>
-                    </a>
-                    <p>Check out the code by pressing this link or click the image to see it deployed! : <a href= {project.github}>Click Here!</a></p>
-                
-                </div>
-                ) }
-
-
+        <button onClick={handleClick}>Hello</button>
+        {isShown && (
+            <div>
+                <h1>These are my Projects:</h1>
+                { assignments.map( project => 
+                    <div>
+                        <p>This is my project, { project.name }</p>
+                        <a href= { project.live }>
+                            <img src= {project.image} width="675" height="400"/>
+                        </a>
+                        <p>Check out the code by pressing this link or click the image to see it deployed! : <a href= {project.github}>Click Here!</a></p>
+                    
+                    </div>
+                    )}
+            </div>
+        )}
 
         </>
     )
